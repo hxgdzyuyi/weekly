@@ -56,7 +56,10 @@ Rails.application.routes.draw do
   #   end
   namespace :admin do
     resources :admin_users
+    get "links/get_info" => "links#get_info"
     resources :collectives
+    post "links/sort" => "links#sort"
+    post "links/create_grapped_link_cover" => "links#create_grapped_link_cover"
     resources :links
   end
 end

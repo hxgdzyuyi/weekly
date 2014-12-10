@@ -19,6 +19,13 @@ class Admin::CollectivesController < Admin::ApplicationController
 
   # GET /collectives/1/edit
   def edit
+    @links_json = Jbuilder.encode do |json|
+      json.array! @collective.links do |link|
+        json.extract! link, :id, :url, :title, :collective_id, :position
+        json.link_cover_thumb link.link_cover.thumb.url
+        json.link_cover_url link.link_cover.url
+      end
+    end
   end
 
   # POST /collectives
@@ -56,7 +63,7 @@ class Admin::CollectivesController < Admin::ApplicationController
   def destroy
     @collective.destroy
     respond_to do |format|
-      format.html { redirect_to collectives_url, notice: 'Collective was successfully destroyed.' }
+      format.html { redirect_to admin_collectives_path, notice: 'Collective was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

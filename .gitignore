@@ -10,6 +10,10 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/public/uploads/
+/node_modules
+/vendor/assets/components
+/app/assets/javascripts/compiled
 
 # Ignore all logfiles and tempfiles.
 /log/*.log

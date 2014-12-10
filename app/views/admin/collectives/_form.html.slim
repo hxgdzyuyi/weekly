@@ -23,9 +23,92 @@
 
   .form-group
     .col-sm-10
-      = f.label :content_json
-      = f.text_area :content_json, class: "form-control"
-
-  .form-group
-    .col-sm-10
       = f.submit :class => "btn btn-primary"
+
+  - unless params[:action] == 'new'
+    = f.hidden_field :id, class: 'collective-id-value'
+
+hr
+
+- unless params[:action] == 'new'
+  #collectives-panel-placeholder
+  pre#collectives-panel-data style='display:none'
+    = @links_json
+
+.modal#add-link-modal.fade
+  .modal-header
+    | 添加网址
+    .close data-dismiss="modal"
+      | ×
+  .modal-inner-content style="margin: 15px"
+  .modal-footer
+
+script id="tmpl-create-link-form" type="tmpl"
+  form.create-link-form
+    .form-group
+      label 网站名字
+      input.form-control name="title" type="text" required="required" value="{{= title}}"
+    .form-group
+      label 网址
+      input.form-control name="url" type="text"  required="required" value="{{= url}}"
+    .form-group
+      label 抓取的封面
+      input.form-control name="cover_id_from_link" type="hidden"  value=""
+    .thumbs.thumbs-form-link
+      | {{ _.each(thumbs, function(thumb) { }}
+      div.col-lg-3.col-md-4.col-xs-6.thumb
+        img src="{{= thumb.url }}" width="100%" data-identifier="{{= thumb.identifier}}"
+      | {{ }) }}
+    .form-group
+      button.btn.btn-primary.btn-submit
+        | 确定
+
+script id="tmpl-edit-link-form" type="tmpl"
+  form.create-link-form
+    .form-group
+      label 网站名字
+      input.form-control name="title" type="text" required="required" value="{{= title}}"
+    .form-group
+      label 网址
+      input.form-control name="url" type="text"  required="required" value="{{= url}}"
+    .form-group
+      label 链接封面
+    .form-group
+      .dropzone
+      input.form-control name="cover_id_from_link" type="hidden"  value=""
+    .link-cover
+      img src="{{= link_cover_url }}"
+    .form-group
+      button.btn.btn-primary.btn-submit
+        | 确定
+
+script id="tmpl-add-link-form" type="tmpl"
+  form.add-link-form
+    .form-group
+      label 输入网址
+      input.form-control#link_url name="link[url]" type="url" required="required"
+    .form-group
+      button.btn.btn-primary.btn-submit
+        | 提交网址
+
+script id="tmpl-link-item" type="tmpl"
+  td.title
+    | {{= title}}
+  td.bd
+    | {{= url}}
+  td.link-cover-wrapper
+    | {{ if (link_cover_thumb) { }}
+    img width="50px" height="50px" src="{{= link_cover_thumb }}"
+    | {{ } }}
+  td.actions
+    a.btn.btn-edit 编辑
+    a.btn.btn-delete 删除
+    a.btn.btn-handle 拖动
+
+script id="tmpl-collectives-panel" type="tmpl"
+  table.table.table-striped.table-bordered.table-hover
+    tbody.links-container
+  button.btn.btn-primary.btn-add-link type="button"
+    | 添加链接
+
+= javascript_include_tag 'compiled/admin/collective/form', 'data-turbolinks-track' => true
