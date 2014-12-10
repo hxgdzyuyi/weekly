@@ -12,7 +12,10 @@
       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
         <li class="<%= is_active?('admin/admin_users')%>">
-        <%= link_to "管理管理员", admin_admin_users_path %>
+          <%= link_to "管理管理员", admin_admin_users_path %>
+        </li>
+        <li class="<%= is_active?('admin/collectives')%>">
+          <%= link_to "管理文摘", admin_collectives_path %>
         </li>
       </ul>
       <% if admin_user_signed_in? %>

@@ -1,0 +1,16 @@
+.page-header
+  = link_to admin_collectives_path, :class => 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_admin_collective_path(@collective), :class => 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show collective
+
+- ['title', 'summary', 'content_json'].each do |prop|
+  dl.dl-horizontal
+    dt
+      = prop
+    dd
+      = @collective[prop]

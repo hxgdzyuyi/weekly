@@ -1,0 +1,27 @@
+.page-header
+  = link_to new_admin_collective_path, :class => 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Collective
+  h1
+    | Listing collectives
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | 标题
+        th
+        th
+        th
+    tbody
+      - @collectives.each do | collective |
+        tr
+          td
+            = collective.title
+          td
+            = link_to 'Show', [:admin, collective]
+          td
+            = link_to 'Edit', edit_admin_collective_path(collective)
+          td
+            = link_to 'Destroy', [:admin, collective], method: :delete, data: { confirm: 'Are you sure?' }
