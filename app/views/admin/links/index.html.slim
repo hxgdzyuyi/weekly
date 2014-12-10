@@ -1,0 +1,27 @@
+.page-header
+  = link_to new_admin_link_path, :class => 'btn btn-primary' do
+    span.glyphicon.glyphicon-plus
+    |  New Link
+  h1
+    | Listing links
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | 标题
+        th
+        th
+        th
+    tbody
+      - @links.each do | link |
+        tr
+          td
+            = link.title
+          td
+            = link_to 'Show', admin_link_path(link)
+          td
+            = link_to 'Edit', edit_admin_link_path(link)
+          td
+            = link_to 'Destroy', [:admin, link], method: :delete, data: { confirm: 'Are you sure?' }

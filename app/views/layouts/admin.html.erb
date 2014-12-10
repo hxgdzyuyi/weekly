@@ -17,6 +17,9 @@
         <li class="<%= is_active?('admin/collectives')%>">
           <%= link_to "管理文摘", admin_collectives_path %>
         </li>
+        <li class="<%= is_active?('admin/links')%>">
+          <%= link_to "管理文摘链接", admin_links_path %>
+        </li>
       </ul>
       <% if admin_user_signed_in? %>
         <ul class="nav navbar-nav navbar-right">

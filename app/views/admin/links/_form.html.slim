@@ -1,0 +1,36 @@
+= form_for([:admin, @link], :html => { :class => "form-horizontal", :role => "form" }) do |f|
+  - if @link.errors.any?
+    .alert.alert-danger.alert-dismissable role="alert"
+      button.close type="button" data-dismiss="alert"
+        span aria-hidden="true"
+          | &times;
+        span.sr-only
+          | Close
+      h4= "#{pluralize(@link.errors.count,"error")} prohibited this link from being saved:"
+      ul
+        - @link.errors.full_messages.each do |msg|
+          li= msg
+
+  .form-group
+    .col-sm-10
+      = f.label :title
+      = f.text_field :title, class: "form-control"
+
+  .form-group
+    .col-sm-10
+      = f.label :url
+      = f.url_field :url, class: "form-control"
+
+  .form-group
+    .col-sm-10
+      = f.label :collective
+      = collection_select :link, :collective_id, Collective.all, :id, :title, {}, { class: "form-control" }
+
+  .form-group
+    .col-sm-10
+      = f.label :summary
+      = f.text_area :summary, class: "form-control"
+
+  .form-group
+    .col-sm-10
+      = f.submit :class => "btn btn-primary"

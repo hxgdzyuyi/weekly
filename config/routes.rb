@@ -57,5 +57,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :admin_users
     resources :collectives
+    resources :links
   end
 end

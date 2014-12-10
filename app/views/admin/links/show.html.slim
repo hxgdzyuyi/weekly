@@ -1,0 +1,16 @@
+.page-header
+  = link_to admin_links_path, :class => 'btn btn-default' do
+    span.glyphicon.glyphicon-list-alt
+    |  Back
+  = link_to edit_admin_link_path(@link), :class => 'btn btn-primary' do
+    span.glyphicon.glyphicon-pencil
+    |  Edit
+  h1
+    | Show link
+
+- ['title', 'summary', 'url', 'collective_id'].each do |prop|
+  dl.dl-horizontal
+    dt
+      = prop
+    dd
+      = @link[prop]
