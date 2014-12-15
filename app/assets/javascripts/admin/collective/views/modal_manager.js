@@ -62,21 +62,6 @@ module.exports = Backbone.View.extend({
     }
     return this
   }
-, updateOrCreateLink: function(e) {
-    e.preventDefault()
-    //var form = this.$('form')
-    //this.editLinkModel.set(_.extend({
-      //title: form.find('input[name="link[title]"]').val()
-    //, url: form.find('input[name="link[url]"]').val()
-    //, position: this.scope.get('links').length
-    //}, this.scope.pick('collective_id')))
-    //var linksCollection = this.scope.get('links')
-    //var self = this
-    //this.editLinkModel
-      //.save()
-      //.done(function(resp) { linksCollection.add(resp) })
-      //.done(_.bind(this.close, this))
-  }
 , close: function() {
     this.$el.modal({ action: 'close' })
   }
