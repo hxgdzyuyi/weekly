@@ -53,6 +53,7 @@ module.exports = Backbone.View.extend({
     this.edittingModel.set({
       title: this.$('input[name=title]').val()
     , url: this.$('input[name=url]').val()
+    , summary: this.$('textarea[name=summary]').val()
     }).save().done(_.bind(function() {
       this.scope.trigger('close:modal')
     }, this))

@@ -6,6 +6,7 @@ var LinkModel = Backbone.Model.extend({
   urlRoot: '/admin/links/'
 , defaults: {
     link_cover_thumb: ''
+  , summary: ''
   }
 })
 

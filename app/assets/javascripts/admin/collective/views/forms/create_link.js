@@ -3,6 +3,9 @@ var _ = require('underscore')
   , Backbone = require('backbone')
 
 var FormModel = Backbone.Model.extend({
+  defaults: {
+    summary: ''
+  }
 })
 
 module.exports = Backbone.View.extend({
@@ -47,6 +50,7 @@ module.exports = Backbone.View.extend({
       , model = new Model({
           title: this.$('input[name=title]').val()
         , url: this.$('input[name=url]').val()
+        , summary: this.$('textarea[name=summary]').val()
         , cover_id_from_link: this.$('input[name=cover_id_from_link]').val()
         , collective_id: scope.get('collective_id')
         })

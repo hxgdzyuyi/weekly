@@ -52,6 +52,10 @@ script id="tmpl-create-link-form" type="tmpl"
       label 网址
       input.form-control name="url" type="text"  required="required" value="{{= url}}"
     .form-group
+      label 简介
+      textarea.form-control name="summary" type="text"
+        | {{= summary}}
+    .form-group
       label 抓取的封面
       input.form-control name="cover_id_from_link" type="hidden"  value=""
     .thumbs.thumbs-form-link
@@ -71,6 +75,10 @@ script id="tmpl-edit-link-form" type="tmpl"
     .form-group
       label 网址
       input.form-control name="url" type="text"  required="required" value="{{= url}}"
+    .form-group
+      label 简介
+      textarea.form-control name="summary" type="text"
+        | {{= summary}}
     .form-group
       label 链接封面
     .form-group
