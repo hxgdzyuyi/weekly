@@ -53,20 +53,38 @@ class Admin::LinksController < Admin::ApplicationController
   # GET /get_info.json
   def get_info
     @url = params[:url]
+    link_host = URI(@url)
+    link_host.path = ''
+    link_host.query = nil
+    link_host = link_host.to_s
 
-    doc = Nokogiri::HTML(open(@url))
-
-    @title = doc.css('h1').text
-    if @title.empty?
-      @title = doc.css('title').text
+    begin
+      # http://tinyurl.com/q7xkt2z
+      uri = URI.parse(@url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.open_timeout = 5
+      http.read_timeout = 5
+      response = http.get(uri.path.empty? ? '/' : uri.path)
+      doc = Nokogiri.parse(response.body)
+    rescue => error
+      raise error
     end
+
+    @title = doc.css('title').text
 
     @grapped_link_covers = doc.css('img').select do |img|
       img[:width].nil? || img[:width].to_i > 300
     end
     .map do |img|
       img['data-origin'] || img['src']
-    end.uniq.map do |img_src|
+    end
+    .uniq.map do |img_src|
+      uri = URI(img_src)
+      unless %w( http https ).include?(uri.scheme)
+        img_src = URI.join(link_host, uri)
+        p img_src
+      end
+
       begin
         image = MiniMagick::Image.open(img_src)
       rescue => error

@@ -22,12 +22,18 @@ module.exports = Backbone.View.extend({
 , addLink: function(e) {
     e.preventDefault()
     var self = this
+      , url = this.$('input[id=link_url]').val()
     this.model.fetch({
-      data: { url: this.$('input[id=link_url]').val() }
+      data: { url: url }
     }).done(function() {
       self.scope.trigger('render:modal', {
         state: 'createLink'
       , modelOptions: self.model.toJSON()
+      })
+    }).error(function() {
+      self.scope.trigger('render:modal', {
+        state: 'createLink'
+      , modelOptions: { title: '', url: url, thumbs: [] }
       })
     })
     this.$el.html('加载中')
