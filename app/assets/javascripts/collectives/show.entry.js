@@ -1,6 +1,6 @@
 var $ = require('jquery')
-  , Masonry = require('Masonry')
-  , imagesLoaded = require('imagesLoaded')
+  , Masonry = require('masonry')
+  , imagesLoaded = require('imagesloaded')
 
 $(function() {
   var container = $('.grids')[0]

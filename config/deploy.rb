@@ -47,10 +47,10 @@ namespace :deploy do
   after "deploy:finalize_update", "deploy:symlink_config"
 
   desc "Install node modules non-globally"
-  task :npm_install, roles: :app do
-    run "cd #{release_path} && npm install"
+  task :npm_install, roles: :web do
+    run "cd #{release_path} && npm install --silent"
   end
-  after "deploy:update_code", "deploy:npm_install"
+  before "deploy:assets:precompile", "deploy:npm_install"
 
   desc "Make sure local git is in sync with remote."
   task :check_revision, roles: :web do
