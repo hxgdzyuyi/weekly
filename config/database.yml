@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: weekly_production
-  username: weekly
+  username: <%= ENV['WEEKLY_DATABASE_USERNAME'] %>
   password: <%= ENV['WEEKLY_DATABASE_PASSWORD'] %>
