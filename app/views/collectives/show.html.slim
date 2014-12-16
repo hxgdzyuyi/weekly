@@ -1,0 +1,19 @@
+.collectives-show-container
+  section.grid-gallery
+    ul.grids.links-list
+      - @collective.links.each do |link|
+        li.grid
+          .inner
+            = link_to 'Read it', link.url, class: "clickable", target: "_blank"
+            .hd
+              img src=link.link_cover.url
+            .bd
+              .title
+                = link.title
+              - if link.summary
+                .summary
+                  = link.summary
+              .actions
+                = link_to 'Read it', link.url, target: "_blank"
+
+= javascript_include_tag 'compiled/collectives/show', 'data-turbolinks-track' => true

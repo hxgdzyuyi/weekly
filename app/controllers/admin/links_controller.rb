@@ -106,7 +106,7 @@ class Admin::LinksController < Admin::ApplicationController
     @link = Link.new(link_params)
     cover_id_from_link = params[:cover_id_from_link]
 
-    unless cover_id_from_link.nil?
+    unless cover_id_from_link.empty?
       grapped_link_cover_uploader = GrappedLinkCoverUploader.new
       grapped_link_cover_uploader.retrieve_from_store!(cover_id_from_link)
 
@@ -134,7 +134,7 @@ class Admin::LinksController < Admin::ApplicationController
         # TODO(yangqing): DRY
         cover_id_from_link = params[:cover_id_from_link]
 
-        unless cover_id_from_link.nil?
+        unless cover_id_from_link.empty?
           grapped_link_cover_uploader = GrappedLinkCoverUploader.new
           grapped_link_cover_uploader.retrieve_from_store!(cover_id_from_link)
 

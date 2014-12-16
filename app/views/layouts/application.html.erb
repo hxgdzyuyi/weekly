@@ -7,6 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= yield %>
+  <header>
+    <h1>
+      建筑设计师<span class="highlight">周刊</span>
+    </h1>
+  </header>
+  <section class="main">
+    <%= yield %>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <copyright>© 2014  建筑设计师周刊</copyright>
+    </div>
+  </footer>
 </body>
 </html>

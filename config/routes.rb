@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'collectives/show'
+
+  get 'collectives/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'admin/admin_users#index'
+  root 'collectives#index'
   devise_for :admin_users
 
   # Example of regular route:
@@ -54,6 +58,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :collectives, only: [:index, :show]
+
   namespace :admin do
     resources :admin_users
     get "links/get_info" => "links#get_info"
