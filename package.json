@@ -6,13 +6,11 @@
     "webpack": "~1.4.4",
     "glob": "~4.3.1",
     "file-loader": "~0.8.1",
-    "url-loader": "~0.5.5"
+    "url-loader": "~0.5.5",
+    "css-loader": "~0.9.0",
+    "style-loader": "~0.8.2"
   },
   "scripts": {
     "postinstall": "$(npm bin)/bower install"
-  },
-  "devDependencies": {
-    "css-loader": "~0.9.0",
-    "style-loader": "~0.8.2"
   }
 }
