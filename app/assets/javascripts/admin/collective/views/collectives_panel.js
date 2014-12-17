@@ -20,7 +20,7 @@ module.exports = Backbone.View.extend({
   }
 , linkAdded: function(model) {
     this.createLinkItem(model)
-    this.sortable()
+    this.sortable('reload')
   }
 , createLinkItem: function(model) {
     var view = new LinkItemView({ model: model, scope: this.scope })
@@ -29,7 +29,7 @@ module.exports = Backbone.View.extend({
 , sortable: function() {
     this.linksContainer.sortable({
       handle: '.btn-handle'
-    , placeholder : '<tr><td colspan="7">&nbsp;</td></tr>'
+    , placeholder : '<tr><td colspan="4">&nbsp;</td></tr>'
     })
   }
 , saveNewOrder: function() {

@@ -102,7 +102,7 @@ script id="tmpl-add-link-form" type="tmpl"
 script id="tmpl-link-item" type="tmpl"
   td.title
     | {{= title}}
-  td.bd
+  td.url
     | {{= url}}
   td.link-cover-wrapper
     | {{ if (link_cover_thumb) { }}
@@ -114,7 +114,12 @@ script id="tmpl-link-item" type="tmpl"
     a.btn.btn-handle 拖动
 
 script id="tmpl-collectives-panel" type="tmpl"
-  table.table.table-striped.table-bordered.table-hover
+  table.table.table-striped.table-bordered.table-hover.collectives-panel-table
+    thead
+      th 名字
+      th 网址
+      th.link-cover-wrapper
+      th.actions 操作
     tbody.links-container
   button.btn.btn-primary.btn-add-link type="button"
     | 添加链接
