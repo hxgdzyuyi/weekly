@@ -4,8 +4,8 @@ var $ = require('jquery')
 
 $(function() {
   var container = $('.grids')[0]
-  var msnry = new Masonry( container, { itemSelector: '.grid' })
   imagesLoaded(container, function() {
+    var msnry = new Masonry( container, { itemSelector: '.grid' })
     msnry.layout()
   })
 })
