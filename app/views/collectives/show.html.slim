@@ -3,13 +3,14 @@
     ul.grids.links-list
       - @collective.links.each do |link|
         li.grid
-          .inner
+          .inner class=("without-img" if link.link_cover.url.nil?)
             = link_to 'Read it', link.url, class: "clickable", target: "_blank"
             .hd
-              img src=link.link_cover.url
-            .bd
               .title
                 = link.title
+              - if link.link_cover
+                img src=link.link_cover.url
+            .bd
               - if link.summary
                 .summary
                   = link.summary
