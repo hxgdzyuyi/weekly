@@ -11,8 +11,8 @@
     <div class="container">
       <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        <li class="<%= is_active?('admin/admin_users')%>">
-          <%= link_to "管理管理员", admin_admin_users_path %>
+        <li class="<%= is_active?('admin/users')%>">
+          <%= link_to "管理管理员", admin_users_path %>
         </li>
         <li class="<%= is_active?('admin/collectives')%>">
           <%= link_to "管理文摘", admin_collectives_path %>
@@ -21,13 +21,13 @@
           <%= link_to "管理文摘链接", admin_links_path %>
         </li>
       </ul>
-      <% if admin_user_signed_in? %>
+      <% if user_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
           <li>
-          <%= link_to current_admin_user.email, edit_admin_user_registration_path %>
+          <%= link_to current_user.email, edit_user_registration_path %>
           </li>
           <li>
-          <%= link_to "注销", destroy_admin_user_session_path, method: "delete" %>
+          <%= link_to "注销", destroy_user_session_path, method: "delete" %>
           </li>
         </ul>
       <% end %>

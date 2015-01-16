@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'collectives#index'
-  devise_for :admin_users
 
+  devise_for :users
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -61,7 +61,7 @@ Rails.application.routes.draw do
   resources :collectives, only: [:index, :show]
 
   namespace :admin do
-    resources :admin_users
+    resources :users
     get "links/get_info" => "links#get_info"
     resources :collectives
     post "links/sort" => "links#sort"
