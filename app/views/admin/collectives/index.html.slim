@@ -12,6 +12,10 @@
         th
           | 标题
         th
+          | id
+        th
+          | 所属用户邮箱
+        th
         th
         th
     tbody
@@ -19,6 +23,10 @@
         tr
           td
             = collective.title
+          td
+            = collective.id
+          td
+            = collective.user.email
           td
             = link_to 'Show', [:admin, collective]
           td

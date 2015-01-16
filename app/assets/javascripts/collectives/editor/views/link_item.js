@@ -4,7 +4,7 @@ var _ = require('underscore')
 
 module.exports = Backbone.View.extend({
   tmpl: _.template($('#tmpl-link-item').html())
-, tagName: 'tr'
+, tagName: 'li'
 , className: 'sortable item'
 , events: {
     'click .btn-delete': 'actionDelete'

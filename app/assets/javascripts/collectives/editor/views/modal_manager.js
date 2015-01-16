@@ -10,6 +10,10 @@ var formsSetting = {
     title: '添加网页'
   , View: require('./forms/add_link')
   }
+, createNode: {
+    title: '添加分类'
+  , View: require('./forms/create_node')
+  }
 , createLink: {
     title: '创建网页'
   , View: require('./forms/create_link')
@@ -38,6 +42,8 @@ module.exports = Backbone.View.extend({
           scope: this.scope
         , modelOptions: options.modelOptions || {}
         , edittingModel: options.edittingModel || ''
+        , viewOptions: options.viewOptions || {}
+        , modalScope: options.modalScope || null
         })
 
 

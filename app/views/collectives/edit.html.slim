@@ -1,0 +1,92 @@
+= form_for(@collective, :html => { :class => "form-horizontal", :role => "form" }) do |f|
+  = f.hidden_field :id, class: 'collective-id-value'
+
+#collectives-panel-placeholder
+.modal#add-link-modal.fade style="display:none;"
+  .modal-header
+    | 添加网址
+    .close data-dismiss="modal"
+      | ×
+  .modal-inner-content style="margin: 15px"
+  .modal-footer
+
+script id="tmpl-create-node-form" type="tmpl"
+  form.create-node-form
+    .form-group
+      label 标题
+      input.form-control name="title" type="text" required="required" value="{{= title}}"
+    .form-group
+      label 简介
+      textarea.form-control name="summary" type="text"
+        | {{= summary}}
+    .form-group
+      button.btn.btn-primary.btn-submit
+        | 确定
+
+script id="tmpl-create-link-form" type="tmpl"
+  form.create-link-form
+    .form-group
+      label 网站名字
+      input.form-control name="title" type="text" required="required" value="{{= title}}"
+    .form-group
+      label 网址
+      input.form-control name="url" type="text"  required="required" value="{{= url}}"
+    .form-group
+      label 简介
+      textarea.form-control name="summary" type="text"
+        | {{= summary}}
+    .form-group
+      button.btn.btn-primary.btn-submit
+        | 确定
+
+script id="tmpl-edit-link-form" type="tmpl"
+  form.edit-link-form
+    .form-group
+      label 网站名字
+      input.form-control name="title" type="text" required="required" value="{{= title}}"
+    .form-group
+      label 网址
+      input.form-control name="url" type="text"  required="required" value="{{= url}}"
+    .form-group
+      label 简介
+      textarea.form-control name="summary" type="text"
+        | {{= summary}}
+    .form-group
+      button.btn.btn-primary.btn-submit
+        | 确定
+
+script id="tmpl-add-link-form" type="tmpl"
+  form.add-link-form
+    .form-group
+      label 输入网址
+      input.form-control#link_url name="link[url]" type="url" required="required"
+    .form-group
+      button.btn.btn-primary.btn-submit
+        | 提交网址
+
+script id="tmpl-link-item" type="tmpl"
+  td.title
+    | {{= title}}
+  td.url
+    | {{= url}}
+  td.actions
+    a.btn.btn-edit 编辑
+    a.btn.btn-delete 删除
+    a.btn.btn-handle 拖动
+
+script id="tmpl-node-item" type="tmpl"
+  h4
+    | {{= title}}
+    a.btn.btn-delete-node 删除
+  ul.links-container
+  button.btn.btn-primary.btn-add-link type="button"
+    | 添加链接
+
+script id="tmpl-collectives-panel" type="tmpl"
+  .nodes-container
+  button.btn.btn-primary.btn-add-node type="button"
+    | 创建分类
+  button.btn.btn-primary.btn-add-link type="button"
+    | 添加链接
+
+= javascript_include_tag 'compiled/collectives/editor/index', 'data-turbolinks-track' => true

@@ -1,3 +1,5 @@
 class Collective < ActiveRecord::Base
-  has_many :links, -> { order("position ASC") }
+  has_many :nodes
+  has_many :links
+  belongs_to :user
 end

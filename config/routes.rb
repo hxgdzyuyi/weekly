@@ -58,7 +58,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  resources :collectives, only: [:index, :show]
+  resources :collectives
+  resources :nodes
 
   namespace :admin do
     resources :users

@@ -1,12 +1,2 @@
 .collectives-index-container
-  section.main-title
-    h1 往期文摘
-
-  section.collectives
-    ul.collectives-list
-      - @collectives.each do |collective|
-        li
-          span.time
-            = collective.created_at.strftime('%d/%m/%Y')
-          | &nbsp;-&nbsp;
-          = link_to collective.title, collective
+  = link_to "新建", new_collective_path

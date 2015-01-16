@@ -51,8 +51,8 @@ module.exports = Backbone.View.extend({
           title: this.$('input[name=title]').val()
         , url: this.$('input[name=url]').val()
         , summary: this.$('textarea[name=summary]').val()
-        , cover_id_from_link: this.$('input[name=cover_id_from_link]').val()
         , collective_id: scope.get('collective_id')
+        , node_id: this.model.get('node_id')
         })
 
     model.save().done(function() {

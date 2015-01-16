@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116070220) do
+ActiveRecord::Schema.define(version: 20150116131539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,12 @@ ActiveRecord::Schema.define(version: 20150116070220) do
   create_table "collectives", force: true do |t|
     t.string   "title"
     t.string   "summary"
-    t.json     "content_json"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "collectives", ["user_id"], name: "index_collectives_on_user_id", using: :btree
 
   create_table "links", force: true do |t|
     t.string   "title"
@@ -33,9 +35,21 @@ ActiveRecord::Schema.define(version: 20150116070220) do
     t.datetime "updated_at"
     t.integer  "position"
     t.string   "link_cover"
+    t.integer  "node_id"
   end
 
   add_index "links", ["collective_id"], name: "index_links_on_collective_id", using: :btree
+  add_index "links", ["node_id"], name: "index_links_on_node_id", using: :btree
+
+  create_table "nodes", force: true do |t|
+    t.string   "title"
+    t.text     "summary"
+    t.integer  "collective_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nodes", ["collective_id"], name: "index_nodes_on_collective_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
