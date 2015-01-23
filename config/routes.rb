@@ -58,7 +58,10 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get 'collectives/:id/edit_info' => "collectives#edit_info"
   resources :collectives
+
   resources :nodes
 
   namespace :admin do

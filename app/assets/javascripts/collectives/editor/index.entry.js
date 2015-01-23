@@ -24,7 +24,7 @@ $(function() {
   var collectiveEditMode = new CollectiveEditMode({})
 
   collectiveEditMode.fetch({
-    url: '/collectives/' + scope.get('collective_id') + '/edit'
+    url: '/collectives/' + scope.get('collective_id') + '/edit_info'
   }).done(function(resp) {
 
     scope.set('links', new LinksCollection(resp.links, { scope: scope }))
