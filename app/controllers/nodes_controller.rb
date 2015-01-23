@@ -41,10 +41,8 @@ class NodesController < ApplicationController
   def update
     respond_to do |format|
       if @node.update(node_params)
-        format.html { redirect_to [:admin, @node], notice: 'Node was successfully updated.' }
-        format.json { render :show, status: :ok, location: [:admin, @node] }
+        format.json { render :show, status: :ok, location: @node }
       else
-        format.html { render :edit }
         format.json { render json: @node.errors, status: :unprocessable_entity }
       end
     end

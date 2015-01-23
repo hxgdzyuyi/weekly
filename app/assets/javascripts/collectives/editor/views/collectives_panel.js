@@ -33,7 +33,7 @@ module.exports = Backbone.View.extend({
     this.scope.trigger('open:modal')
   }
 , openAddNodeModal: function() {
-    this.scope.trigger('render:modal', { state: 'createNode' })
+    this.scope.trigger('render:modal', { state: 'createOrEditNode' })
     this.scope.trigger('open:modal')
   }
 , nodeAdded: function(model) {

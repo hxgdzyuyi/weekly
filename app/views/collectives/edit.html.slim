@@ -76,7 +76,9 @@ script id="tmpl-link-item" type="tmpl"
 
 script id="tmpl-node-item" type="tmpl"
   h4
-    | {{= title}}
+    span.node-title
+      | {{= title}}
+    a.btn.btn-edit-node 编辑
     a.btn.btn-delete-node 删除
   ul.links-container
   button.btn.btn-primary.btn-add-link type="button"

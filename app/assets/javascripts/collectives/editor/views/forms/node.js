@@ -16,7 +16,9 @@ module.exports = Backbone.View.extend({
   }
 , initialize: function(options) {
     this.scope = options.scope
-    this.model = new FormModel(options.modelOptions)
+    this.edittingModel = options.edittingModel
+    this.model = new FormModel(
+      this.edittingModel ? this.edittingModel.toJSON() : options.modelOptions)
   }
 , render: function() {
     this.$el.html(this.tmpl(this.model.toJSON()))
@@ -27,16 +29,25 @@ module.exports = Backbone.View.extend({
     var scope = this.scope
       , nodes = scope.get('nodes')
       , Model = nodes.model
-      , model = new Model({
+      , model
+      , changedAttrs = {
           title: this.$('input[name=title]').val()
         , summary: this.$('textarea[name=summary]').val()
         , collective_id: scope.get('collective_id')
-        })
+        }
 
-    model.save().done(function() {
-      nodes.add(model)
+    if (this.edittingModel) {
+      model = this.edittingModel.set(changedAttrs)
+    } else {
+      model = new Model(changedAttrs)
+    }
+
+    model.save().done(_.bind(function() {
+      if (!this.edittingModel) {
+        nodes.add(model)
+      }
       scope.trigger('close:modal')
-    })
+    }, this))
     return
   }
 })
