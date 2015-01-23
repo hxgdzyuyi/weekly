@@ -1,20 +1,12 @@
 .collectives-show-container
-  section.grid-gallery
-    ul.grids.links-list
-      - @collective.links.each do |link|
-        li.grid
-          .inner class=("without-img" if link.link_cover.url.nil?)
-            = link_to 'Read it', link.url, class: "clickable", target: "_blank"
-            .hd
-              .title
-                = link.title
-              - if link.link_cover
-                img src=link.link_cover.url
-            .bd
-              - if link.summary
-                .summary
-                  = link.summary
-              .actions
-                = link_to 'Read it', link.url, target: "_blank"
+  section.collective-content
+    - @collective.nodes.each do |node|
+      section.node
+        h3
+          =node.title
+        ul.links-list
+          -node.links.each do |link|
+            li.link-item
+              = link_to link.title, link.url, target: "_blank", class: "link-title"
 
 = javascript_include_tag 'compiled/collectives/show', 'data-turbolinks-track' => true

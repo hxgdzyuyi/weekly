@@ -3,6 +3,7 @@ var $ = require('jquery')
   , imagesLoaded = require('imagesloaded')
 
 $(function() {
+  return
   var container = $('.grids')[0]
   imagesLoaded(container, function() {
     var msnry = new Masonry( container, { itemSelector: '.grid' })
