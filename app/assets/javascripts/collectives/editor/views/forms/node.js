@@ -39,7 +39,7 @@ module.exports = Backbone.View.extend({
     if (this.edittingModel) {
       model = this.edittingModel.set(changedAttrs)
     } else {
-      model = new Model(changedAttrs)
+      model = new Model(_.extend(changedAttrs, { position: nodes.getMaxPosition() }))
     }
 
     model.save().done(_.bind(function() {

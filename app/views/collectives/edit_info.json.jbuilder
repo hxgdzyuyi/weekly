@@ -1,5 +1,5 @@
 json.nodes @collective.nodes do |node|
-  json.extract! node, :id, :title, :summary
+  json.extract! node, :id, :title, :summary, :position
 end
 
 json.links @collective.links do |link|
