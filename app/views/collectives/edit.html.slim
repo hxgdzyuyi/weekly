@@ -75,14 +75,24 @@ script id="tmpl-link-item" type="tmpl"
     a.btn.btn-handle 拖动
 
 script id="tmpl-node-item" type="tmpl"
-  h4
+  h4.header draggable="true"
     span.node-title
       | {{= title}}
     a.btn.btn-edit-node 编辑
     a.btn.btn-delete-node 删除
+    a.btn.btn-sort-node 拖动
   ul.links-container
   button.btn.btn-primary.btn-add-link type="button"
     | 添加链接
+
+script id="tmpl-nodes-panel" type="tmpl"
+  .title
+    | 拖动进行排序
+  ul
+    | {{ _.each(nodes.getRawNodes(), function(node) { }}
+    li data-id="{{= node.id}}"
+      | {{= node.get('title') }}
+    | {{ }) }}
 
 script id="tmpl-collectives-panel" type="tmpl"
   .nodes-container

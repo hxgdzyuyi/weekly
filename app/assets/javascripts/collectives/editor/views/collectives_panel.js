@@ -3,6 +3,7 @@ var _ = require('underscore')
   , Backbone = require('backbone')
   , LinkItemView = require('./link_item')
   , NodeItemView = require('./node_item')
+  , Sortable = require('Sortable')
 
 var ModalScope = Backbone.Model.extend({
   initialize: function(options) {
@@ -15,16 +16,32 @@ var ModalScope = Backbone.Model.extend({
 
 module.exports = Backbone.View.extend({
   tmpl: $('#tmpl-collectives-panel').html()
+, className: 'collectives-edit-container'
 , initialize: function(options) {
     this.scope = options.scope
     var links = this.scope.get('links')
       , nodes = this.scope.get('nodes')
     this.listenTo(links, 'add', this.linkAdded, this)
     this.listenTo(nodes, 'add', this.nodeAdded, this)
+    this.listenTo(nodes, 'change:position', this.moveNodeToPosition, this)
   }
 , events: {
     'click .btn-add-link': 'openAddLinkModal'
   , 'click .btn-add-node': 'openAddNodeModal'
+  }
+, moveNodeToPosition: function(model) {
+    var nodes = this.scope.get('nodes')
+      , index = nodes.index(model)
+      , origPosition = model.previous('position')
+      , currPosition = model.get('position')
+
+    if (origPosition == currPosition) { return }
+
+    var node = this.$('.node[data-id="' + model.id + '"]')
+      , target = this.$('.node').eq(index)
+
+    node.detach()
+    target[ origPosition > currPosition ? 'before' : 'after' ](node)
   }
 , openAddLinkModal: function() {
     var modalScope = new ModalScope({ nodeModel: this.model })
@@ -101,6 +118,7 @@ module.exports = Backbone.View.extend({
       }, this)
 
     }, this)
+
     return this
   }
 })

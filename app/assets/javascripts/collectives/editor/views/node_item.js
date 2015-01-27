@@ -2,6 +2,7 @@ var _ = require('underscore')
   , $ = require('jquery')
   , Backbone = require('backbone')
   , LinkItemView = require('./link_item')
+  , NodesPanel = require('./nodes_panel')
 
 var ModalScope = Backbone.Model.extend({
   initialize: function(options) {
@@ -20,6 +21,9 @@ module.exports = Backbone.View.extend({
     'click .btn-delete-node': 'actionDelete'
   , 'click .btn-edit-node': 'openEditNodeModal'
   , 'click .btn-add-link': 'openAddLinkModal'
+  , 'mousedown': 'mousedown'
+  , 'dragstart .header': 'dragstart'
+  , 'dragend .header': 'dragend'
   }
 , initialize: function(options) {
     this.scope = options.scope
@@ -30,6 +34,23 @@ module.exports = Backbone.View.extend({
         || !linkModel.get('node_id') && !this.model.get('isDefaultNode')) { return }
       this.createLinkItem(linkModel)
     }, this)
+  }
+, dragstart: function(e) {
+    this.nodesPanel = new NodesPanel({
+      scope: this.scope
+    , sortedNodeModel: this.model
+    })
+    this.$el.append(this.nodesPanel.render().el)
+  }
+, dragend: function() {
+    var sortedIndex = this.nodesPanel.getSortedNodeIndex()
+    this.nodesPanel.remove()
+    this.model.saveIndex(sortedIndex)
+  }
+, mousedown: function(e) {
+    if (!$(e.target).is('.btn-sort-node')) {
+      return e.preventDefault()
+    }
   }
 , createLinkItem: function(model) {
     var view = new LinkItemView({ model: model, scope: this.scope })
@@ -53,8 +74,10 @@ module.exports = Backbone.View.extend({
     this.$('.node-title').text(this.model.get('title'))
   }
 , render: function() {
-    this.$el.data('id', this.model.id)
+    this.$el.attr('data-id', this.model.id)
     this.$el.html(this.tmpl(this.model.toJSON()))
+    this.header =  this.$('.header')
+    this.header[0].draggable = true
     if (this.model.get('isDefaultNode')) {
       this.$('.btn-delete-node').remove()
       this.$('.btn-add-link').remove()
