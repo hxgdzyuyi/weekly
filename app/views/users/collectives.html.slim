@@ -1,0 +1,13 @@
+ul
+  - @collectives.each do |collective|
+    li
+      - if user_signed_in?
+        span style="margin-right: 10px"
+          = link_to '编辑', edit_collective_path(collective), target: "_blank"
+        span style="margin-right: 10px"
+          = link_to '查看', collective, target: "_blank"
+        span style="margin-right: 10px"
+          = link_to '删除', collective, method: :delete, data: { confirm: 'Are you sure?' }
+      span = collective.title
+
+= link_to "新建文摘", new_collective_path, class: "button button-highlight"

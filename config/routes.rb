@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   root 'collectives#index'
 
   devise_for :users
+  resources :users do
+    member do
+      get :collectives
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

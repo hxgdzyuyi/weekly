@@ -36,8 +36,8 @@ class CollectivesController < ApplicationController
 
     respond_to do |format|
       if @collective.save
-        format.html { redirect_to [:admin, @collective], notice: 'Collective was successfully created.' }
-        format.json { render :show, status: :created, location: [:admin, @collective] }
+        format.html { redirect_to edit_collective_path(@collective), notice: 'Collective was successfully created.' }
+        format.json { render :show, status: :created, location: edit_collective(@collective) }
       else
         format.html { render :new }
         format.json { render json: @collective.errors, status: :unprocessable_entity }
@@ -50,8 +50,8 @@ class CollectivesController < ApplicationController
   def update
     respond_to do |format|
       if @collective.update(collective_params)
-        format.html { redirect_to [:admin, @collective], notice: 'Collective was successfully updated.' }
-        format.json { render :show, status: :ok, location: [:admin, @collective] }
+        format.html { redirect_to [@collective], notice: 'Collective was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@collective] }
       else
         format.html { render :edit }
         format.json { render json: @collective.errors, status: :unprocessable_entity }
@@ -64,7 +64,9 @@ class CollectivesController < ApplicationController
   def destroy
     @collective.destroy
     respond_to do |format|
-      format.html { redirect_to admin_collectives_path, notice: 'Collective was successfully destroyed.' }
+      format.html {
+        redirect_to collectives_user_path(current_user.id), notice: 'Collective was successfully destroyed.'
+      }
       format.json { head :no_content }
     end
   end
