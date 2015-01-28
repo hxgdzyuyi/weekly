@@ -27,8 +27,8 @@ var formsSetting = {
 module.exports = Backbone.View.extend({
   el: $('#add-link-modal')
 , initialize: function(options) {
-    this.content = this.$('.modal-inner-content')
-    this.header = this.$('.modal-header')
+    this.content = this.$('.body')
+    this.headerText = this.$('.header-text')
     this.scope = options.scope
     this.listenTo(this.scope, 'render:modal', _.bind(this.renderModal, this))
     this.listenTo(this.scope, 'open:modal', _.bind(this.open, this))
@@ -48,7 +48,7 @@ module.exports = Backbone.View.extend({
 
 
     this.content.html(view.render().el)
-    this.header.text(title)
+    this.headerText.text(title)
   }
 , render: function(stateOptions) {
     state = stateOptions.state

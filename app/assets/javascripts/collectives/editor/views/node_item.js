@@ -21,7 +21,7 @@ module.exports = Backbone.View.extend({
     'click .btn-delete-node': 'actionDelete'
   , 'click .btn-edit-node': 'openEditNodeModal'
   , 'click .btn-add-link': 'openAddLinkModal'
-  , 'mousedown': 'mousedown'
+  , 'mousedown .header': 'mousedown'
   , 'dragstart .header': 'dragstart'
   , 'dragend .header': 'dragend'
   }
@@ -48,7 +48,9 @@ module.exports = Backbone.View.extend({
     this.model.saveIndex(sortedIndex)
   }
 , mousedown: function(e) {
-    if (!$(e.target).is('.btn-sort-node')) {
+    var btnSortNode = this.$('.btn-sort-node')
+    if (!btnSortNode.length || !$(e.target).is('.btn-sort-node')
+      && !$.contains(btnSortNode[0], e.target)) {
       return e.preventDefault()
     }
   }
@@ -79,9 +81,8 @@ module.exports = Backbone.View.extend({
     this.header =  this.$('.header')
     this.header[0].draggable = true
     if (this.model.get('isDefaultNode')) {
-      this.$('.btn-delete-node').remove()
+      this.$('.header .btn').remove()
       this.$('.btn-add-link').remove()
-      this.$('.btn-edit-node').remove()
       this.$el.addClass('default-node')
     }
     return this

@@ -1,0 +1,112 @@
+@import "compass/css3"
+
+.collectives-edit-container
+  width: 860px
+  margin: 0 auto
+  .node .header
+    .actions
+      margin-left: 20px
+      margin-top: 2px
+      @include inline-block
+    .btn
+      padding: 0 5px
+      @include inline-block
+    .btn
+      cursor: pointer
+    .btn-sort-node
+      cursor: move
+      cursor: -webkit-grab
+    .svg-icon
+      width: 20px
+      height: 30px
+      fill: white
+  .svg-icon
+    position: relative
+    @include inline-block
+    vertical-align: top
+  .bd
+    background: white
+    .actions .btn-add-link
+      margin: 10px 20px
+  .node
+    margin-bottom: 20px
+    position: relative
+    .header
+      color: white
+      background-color: #FF7373
+      padding: 10px 15px
+      font-size: 26px
+      font-weight: normal
+      margin: 20px 0 0px -10px
+      @include inline-block
+    .links-container
+      margin: 0
+      .title, .url
+        margin-right: 15px
+        white-space: nowrap
+        text-overflow: ellipsis
+        overflow: hidden
+        @include inline-block
+      .title
+        max-width: 220px
+      .url
+        max-width: 320px
+        color: #999
+        font-size: 12px
+      .item
+        padding: 15px 40px
+        font-size: 16px
+        border-bottom: 1px solid #eee
+        .actions
+          float: right
+        .btn
+          padding: 3px
+        .svg-icon
+          width: 16px
+          height: 30px
+          fill: gray
+  .nodes-panel
+    z-index: 100
+    position: absolute
+    top: 20px
+    left: 400px
+    @include box-shadow(#ddd 2px 2px 10px)
+    .title
+      background: #5F9EDF
+      text-align: center
+      padding: 10px
+      margin: 0
+    ul
+      margin: 0
+    li.sorted
+      opacity: 0.8
+      background: #F4E2C9
+    li
+      background: white
+      padding: 10px 40px
+  > .footer-actions
+    background: white
+    padding: 10px
+    .button
+      margin-right: 15px
+
+.form-group
+  margin-bottom: 15px
+  label
+    max-width: 100%
+    margin-bottom: 5px
+    font-weight: 700
+    @include inline-block
+  textarea.form-control
+    height: auto
+  .form-control
+    width: 100%
+    height: 34px
+    line-height: 1.42
+    padding: 6px 12px
+    font-size: 14px
+    background-color: white
+    border: 1px solid #ccc
+    border-radius: 4px
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075))

@@ -13,3 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+
+$(function() {
+  $(document).on('click', 'a[href="#"]', function(e) {
+    e.preventDefault()
+  })
+})

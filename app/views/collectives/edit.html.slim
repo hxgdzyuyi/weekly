@@ -3,12 +3,12 @@
 
 #collectives-panel-placeholder
 .modal#add-link-modal.fade style="display:none;"
-  .modal-header
-    | 添加网址
+  .header
+    span.header-text
+      | 添加网址
     .close data-dismiss="modal"
       | ×
-  .modal-inner-content style="margin: 15px"
-  .modal-footer
+  .body
 
 script id="tmpl-create-node-form" type="tmpl"
   form.create-node-form
@@ -20,7 +20,7 @@ script id="tmpl-create-node-form" type="tmpl"
       textarea.form-control name="summary" type="text"
         | {{= summary}}
     .form-group
-      button.btn.btn-primary.btn-submit
+      button.button.button-royal.btn-submit
         | 确定
 
 script id="tmpl-create-link-form" type="tmpl"
@@ -36,7 +36,7 @@ script id="tmpl-create-link-form" type="tmpl"
       textarea.form-control name="summary" type="text"
         | {{= summary}}
     .form-group
-      button.btn.btn-primary.btn-submit
+      button.button.button-royal.btn-submit
         | 确定
 
 script id="tmpl-edit-link-form" type="tmpl"
@@ -52,7 +52,7 @@ script id="tmpl-edit-link-form" type="tmpl"
       textarea.form-control name="summary" type="text"
         | {{= summary}}
     .form-group
-      button.btn.btn-primary.btn-submit
+      button.button.button-royal.btn-submit
         | 确定
 
 script id="tmpl-add-link-form" type="tmpl"
@@ -65,25 +65,34 @@ script id="tmpl-add-link-form" type="tmpl"
         | 提交网址
 
 script id="tmpl-link-item" type="tmpl"
-  td.title
+  span.actions
+    a.btn.btn-edit href="#"
+     == svg_use('edit')
+    a.btn.btn-delete href="#"
+     == svg_use('close')
+    a.btn.btn-handle href="#"
+     == svg_use('menu')
+  span.title
     | {{= title}}
-  td.url
+  span.url
     | {{= url}}
-  td.actions
-    a.btn.btn-edit 编辑
-    a.btn.btn-delete 删除
-    a.btn.btn-handle 拖动
 
 script id="tmpl-node-item" type="tmpl"
   h4.header draggable="true"
     span.node-title
       | {{= title}}
-    a.btn.btn-edit-node 编辑
-    a.btn.btn-delete-node 删除
-    a.btn.btn-sort-node 拖动
-  ul.links-container
-  button.btn.btn-primary.btn-add-link type="button"
-    | 添加链接
+    span.actions
+      a.btn.btn-edit-node
+        == svg_use('edit')
+      a.btn.btn-delete-node
+        == svg_use('close')
+      a.btn.btn-sort-node
+        == svg_use('menu')
+  .bd
+    ul.links-container
+    .actions
+      button.button.button-action.button-small.btn-add-link type="button"
+        | 添加链接
 
 script id="tmpl-nodes-panel" type="tmpl"
   .title
@@ -96,9 +105,11 @@ script id="tmpl-nodes-panel" type="tmpl"
 
 script id="tmpl-collectives-panel" type="tmpl"
   .nodes-container
-  button.btn.btn-primary.btn-add-node type="button"
-    | 创建分类
-  button.btn.btn-primary.btn-add-link type="button"
-    | 添加链接
+  .footer-actions
+    button.button.button-royal.btn-add-node type="button"
+      | 创建分类
+    button.button.button-royal.btn-add-link type="button"
+      | 添加链接
 
+= inline_svg 'widgets/icons.svg'
 = javascript_include_tag 'compiled/collectives/editor/index', 'data-turbolinks-track' => true
