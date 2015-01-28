@@ -1,5 +1,4 @@
 var _ = require('underscore')
-require('html.sortable')
 
 _.templateSettings = {
     evaluate    : /\{\{([\s\S]+?)\}\}/g
