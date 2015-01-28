@@ -3,7 +3,6 @@ var _ = require('underscore')
   , Backbone = require('backbone')
   , LinkItemView = require('./link_item')
   , NodeItemView = require('./node_item')
-  , Sortable = require('Sortable')
 
 var ModalScope = Backbone.Model.extend({
   initialize: function(options) {
