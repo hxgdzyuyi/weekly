@@ -1,6 +1,6 @@
 .collectives-show-container
   section.collective-content
-    - @collective.nodes.each do |node|
+    - @collective.nodes.order(:position).each do |node|
       section.node
         h3
           =node.title
