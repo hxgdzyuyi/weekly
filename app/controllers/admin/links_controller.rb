@@ -121,6 +121,6 @@ class Admin::LinksController < Admin::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params[:link].permit(:title, :summary, :collective_id, :url, :node_id)
+      params[:link].permit(:title, :summary, :collective_id, :url, :node_id, :position)
     end
 end

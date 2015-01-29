@@ -27,6 +27,7 @@ module.exports = Backbone.View.extend({
     this.model.destroy()
   }
 , render: function() {
+    this.el.draggable = true
     this.$el.data('id', this.model.id)
     this.$el.html(this.tmpl(this.model.toJSON()))
     return this

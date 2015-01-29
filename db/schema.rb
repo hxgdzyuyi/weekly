@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127071157) do
+ActiveRecord::Schema.define(version: 20150129115405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150127071157) do
     t.integer  "collective_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position"
+    t.float    "position"
     t.string   "link_cover"
     t.integer  "node_id"
   end

@@ -30,7 +30,7 @@ $(function() {
     scope.set('nodes', new NodesCollection(resp.nodes, { scope: scope }))
 
     scope.get('nodes')
-      .push({ title: '未分类', isDefaultNode: true, summary: '' })
+      .push({ title: '未分类', isDefaultNode: true, summary: '', node_id: null })
 
     var modalManager = new ModalManager({ scope: scope })
     scope.set('modalManager', modalManager)

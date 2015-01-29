@@ -13,6 +13,28 @@ var ModalScope = Backbone.Model.extend({
   }
 })
 
+
+var animate = function(prevRect, target, duration) {
+  var currentRect = target[0].getBoundingClientRect()
+
+  duration = duration || 200
+
+  target.css('transition', 'none')
+  target.css('transform', 'translate3d('
+    + (prevRect.left - currentRect.left) + 'px,'
+    + (prevRect.top - currentRect.top) + 'px,0)'
+    )
+  target[0].offsetWidth // repaint
+  target.css('transition', 'all ' + duration + 'ms')
+  target.css('transform', 'translate3d(0, 0, 0)')
+  clearTimeout(target.data('animated'))
+  target.data('animated', setTimeout(function() {
+    target.css('transition', '')
+    target.data('animated', '')
+  }, duration))
+}
+
+
 module.exports = Backbone.View.extend({
   tmpl: $('#tmpl-collectives-panel').html()
 , className: 'collectives-edit-container'
@@ -27,6 +49,57 @@ module.exports = Backbone.View.extend({
 , events: {
     'click .btn-add-link': 'openAddLinkModal'
   , 'click .btn-add-node': 'openAddNodeModal'
+  , 'dragover .node .bd': 'itemDragedover'
+  , 'dragstart .node .item': 'itemDragedstart'
+  , 'dragend .node .item': 'itemDragedend'
+  }
+, itemDragedstart: function(e) {
+    var el = $(e.currentTarget)
+    el.addClass('sortable-ghost')
+  }
+, itemDragedover: function(e) {
+    var nodeBody = $(e.currentTarget)
+      , sortableGhost = this.$('.sortable-ghost')
+
+    if (!$.contains(nodeBody[0], sortableGhost[0])) {
+      var linksContainer = nodeBody.find('.links-container')
+        , prevRect = sortableGhost[0].getBoundingClientRect()
+      if (sortableGhost.data('animated')) { return }
+      sortableGhost.detach()
+      linksContainer.append(sortableGhost)
+      animate(prevRect, sortableGhost, 400)
+      return
+    }
+
+    var target = $(e.target)
+      , target = target.is('.item') ? target : target.closest('.item', nodeBody)
+
+    if (!target.length || target.is(sortableGhost) || target.data('animated')) { return }
+
+    var items = nodeBody.find('.item')
+      , insertMethod = items.index(target) < items.index(sortableGhost)
+        ? 'before' : 'after'
+    targetRect = target[0].getBoundingClientRect()
+    sortableGhostRect = sortableGhost[0].getBoundingClientRect()
+
+    sortableGhost.detach()
+    target[insertMethod](sortableGhost)
+
+    animate(sortableGhostRect, sortableGhost)
+    animate(targetRect, target)
+  }
+, itemDragedend: function(e) {
+    var el = $(e.currentTarget)
+    el.removeClass('sortable-ghost')
+    var node = el.closest('.node', this.$el)
+      , nodeId = node.data('id') || null
+      , attrs = {}
+      , items = node.find('.item')
+      , itemIndex = items.index(el)
+      , links = this.scope.get('links')
+      , linkModel = links.get(el.data('id'))
+
+    linkModel.saveIndex(nodeId, itemIndex)
   }
 , moveNodeToPosition: function(model) {
     var nodes = this.scope.get('nodes')
@@ -80,22 +153,6 @@ module.exports = Backbone.View.extend({
     , placeholder : '<tr><td colspan="4">&nbsp;</td></tr>'
     })
   }
-, saveNewOrder: function() {
-    var linksIds = _(this.$('.item')).map(function(el) {
-      return $(el).data('id')
-    })
-
-    $.ajax({
-      type: 'POST'
-    , url: '/admin/links/sort'
-    , dataType: 'json'
-    , data: {
-        links_ids: linksIds
-      }
-    }).fail(function() {
-      alert('发生了奇怪的错误')
-    })
-  }
 , render: function() {
     this.$el.html(this.tmpl)
 
@@ -105,10 +162,7 @@ module.exports = Backbone.View.extend({
 
     nodes.each(function(node) {
       var nodeView = this.createNodeItem(node)
-        , linksBelongToNode = links.filter(function(link) {
-            return link.get('node_id')
-              ? link.get('node_id') === node.id : node.get('isDefaultNode')
-          })
+        , linksBelongToNode = links.findModels(node.id || null)
 
       if (!linksBelongToNode.length) { return }
 

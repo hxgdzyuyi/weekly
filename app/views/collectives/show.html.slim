@@ -1,12 +1,20 @@
 .collectives-show-container
   section.collective-content
     - @collective.nodes.order(:position).each do |node|
-      section.node
-        h3
-          =node.title
-        ul.links-list
-          -node.links.each do |link|
-            li.link-item
-              = link_to link.title, link.url, target: "_blank", class: "link-title"
+      -unless node.links.empty?
+        section.node
+          h3
+            =node.title
+          ul.links-list
+            -node.links.order(:position).each do |link|
+              li.link-item
+                = link_to link.title, link.url, target: "_blank", class: "link-title"
+
+    section.node.default-node
+      h3 未命名
+      ul.links-list
+        -@collective.links.where(node_id: nil).each do |link|
+          li.link-item
+            = link_to link.title, link.url, target: "_blank", class: "link-title"
 
 = javascript_include_tag 'compiled/collectives/show', 'data-turbolinks-track' => true

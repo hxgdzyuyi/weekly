@@ -47,17 +47,22 @@ module.exports = Backbone.View.extend({
     var scope = this.scope
       , links = scope.get('links')
       , Model = links.model
+      , nodeId = this.model.get('node_id')
       , model = new Model({
           title: this.$('input[name=title]').val()
         , url: this.$('input[name=url]').val()
         , summary: this.$('textarea[name=summary]').val()
         , collective_id: scope.get('collective_id')
-        , node_id: this.model.get('node_id')
+        , node_id: nodeId
+        , position: links.getMaxPositionFromNode(nodeId)
         })
+    console.log('position')
+    console.log(links.getMaxPositionFromNode(nodeId))
 
     model.save().done(function() {
       links.add(model)
       scope.trigger('close:modal')
+      console.log(links.findModels(nodeId))
     })
     return
   }
