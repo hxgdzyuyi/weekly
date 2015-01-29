@@ -23,6 +23,7 @@ module.exports = Backbone.View.extend({
     this.scope.trigger('open:modal')
   }
 , actionDelete: function() {
+    if (!confirm('確定刪除')) { return }
     this.model.destroy()
   }
 , render: function() {

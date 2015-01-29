@@ -88,6 +88,7 @@ module.exports = Backbone.View.extend({
     return this
   }
 , actionDelete: function() {
+    if (!confirm('確定刪除')) { return }
     this.model.destroy()
   }
 })
