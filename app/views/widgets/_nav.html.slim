@@ -1,0 +1,17 @@
+header.topnav
+  .container
+    .usernav
+      -if user_signed_in?
+        ul
+          li
+            = link_to current_user.email, edit_user_registration_path
+          li
+            = link_to "注销", destroy_user_session_path, method: "delete"
+      -else
+        ul.anon-user-actions
+          li
+            = link_to "注册", new_user_registration_path, class: "button button-small button-primary"
+          li
+            = link_to "登录", new_user_session_path, class: "button button-small button-primary"
+    .logo-wrapper
+      = link_to "Weekly", "/"
