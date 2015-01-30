@@ -61,6 +61,8 @@ module.exports = Backbone.View.extend({
     var nodeBody = $(e.currentTarget)
       , sortableGhost = this.$('.sortable-ghost')
 
+    if (!sortableGhost.length) { return }
+
     if (!$.contains(nodeBody[0], sortableGhost[0])) {
       var linksContainer = nodeBody.find('.links-container')
         , prevRect = sortableGhost[0].getBoundingClientRect()
