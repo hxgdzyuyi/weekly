@@ -49,6 +49,9 @@ module.exports = Backbone.View.extend({
 
     this.content.html(view.render().el)
     this.headerText.text(title)
+    _.defer(_.bind(function() {
+      this.content.find('textarea').textareaAutoSize()
+    }, this))
   }
 , render: function(stateOptions) {
     state = stateOptions.state

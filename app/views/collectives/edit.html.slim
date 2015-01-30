@@ -17,7 +17,7 @@ script id="tmpl-create-node-form" type="tmpl"
       input.form-control name="title" type="text" required="required" value="{{= title}}"
     .form-group
       label 简介
-      textarea.form-control name="summary" type="text"
+      textarea.form-control name="summary" type="text"  rows="3"
         | {{= summary}}
     .form-group
       button.button.button-royal.btn-submit
@@ -33,7 +33,7 @@ script id="tmpl-create-link-form" type="tmpl"
       input.form-control name="url" type="text"  required="required" value="{{= url}}"
     .form-group
       label 简介
-      textarea.form-control name="summary" type="text"
+      textarea.form-control name="summary" type="text" rows="3"
         | {{= summary}}
     .form-group
       button.button.button-royal.btn-submit
@@ -49,7 +49,7 @@ script id="tmpl-edit-link-form" type="tmpl"
       input.form-control name="url" type="text"  required="required" value="{{= url}}"
     .form-group
       label 简介
-      textarea.form-control name="summary" type="text"
+      textarea.form-control name="summary" type="text" rows="3"
         | {{= summary}}
     .form-group
       button.button.button-royal.btn-submit

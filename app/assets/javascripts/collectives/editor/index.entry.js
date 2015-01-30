@@ -1,4 +1,5 @@
 var _ = require('underscore')
+require('textarea-autosize')
 
 _.templateSettings = {
     evaluate    : /\{\{([\s\S]+?)\}\}/g

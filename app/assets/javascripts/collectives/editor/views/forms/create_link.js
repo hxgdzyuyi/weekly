@@ -56,8 +56,6 @@ module.exports = Backbone.View.extend({
         , node_id: nodeId
         , position: links.getMaxPositionFromNode(nodeId)
         })
-    console.log('position')
-    console.log(links.getMaxPositionFromNode(nodeId))
 
     model.save().done(function() {
       links.add(model)
