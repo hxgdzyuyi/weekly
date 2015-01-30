@@ -9,9 +9,7 @@ module.exports = Backbone.View.extend({
     this.scope = options.scope
     var links = this.scope.get('links')
     this.createViews()
-  }
-, events: {
-    'click': 'collpaseLinks'
+    $(document).on('click', _.bind(this.collpaseLinks, this))
   }
 , collpaseLinks: function() {
     this.scope.trigger('collapse:links')
