@@ -9,8 +9,8 @@ module.exports = Backbone.View.extend({
 , className: 'link-item'
 , events: {
     'click': 'clicked'
-  , 'click a[href]': 'stopPropagation'
-  , 'click .summary': 'stopPropagation'
+  , 'click .expanded a[href]': 'stopPropagation'
+  , 'click .expanded .summary': 'stopPropagation'
   }
 , stopPropagation: function(e) {
     e.stopPropagation()
