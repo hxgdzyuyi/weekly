@@ -41,12 +41,16 @@
       @include inline-block
     .links-container
       margin: 0
-      .title, .url
+      .title, .url, .summary
         margin-right: 15px
         white-space: nowrap
         text-overflow: ellipsis
         overflow: hidden
         @include inline-block
+      .summary
+        max-width: 220px
+        font-size: 12px
+        color: #999
       .title
         max-width: 220px
       .url

@@ -10,6 +10,13 @@ class CollectivesController < ApplicationController
   # GET /collectives/1
   # GET /collectives/1.json
   def show
+    @links_json = Jbuilder.encode do |json|
+      json.array! @collective.links do |link|
+        json.extract! link, :id, :url, :title, :collective_id, :position, :summary
+        json.link_cover_thumb link.link_cover.thumb.url
+        json.link_cover_url link.link_cover.url
+      end
+    end
   end
 
   # GET /collectives/new
@@ -20,13 +27,6 @@ class CollectivesController < ApplicationController
   # GET /collectives/1/edit
   def edit_info
     @collective = Collective.find(params[:id])
-    @links_json = Jbuilder.encode do |json|
-      json.array! @collective.links do |link|
-        json.extract! link, :id, :url, :title, :collective_id, :position, :summary
-        json.link_cover_thumb link.link_cover.thumb.url
-        json.link_cover_url link.link_cover.url
-      end
-    end
   end
 
   # POST /collectives

@@ -9,8 +9,8 @@ _.templateSettings = {
 
 var CollectivesPanel = require('./views/collectives_panel')
   , ModalManager = require('./views/modal_manager')
-  , LinksCollection = require('./collections/links')
-  , NodesCollection = require('./collections/nodes')
+  , LinksCollection = require('../collections/links.js')
+  , NodesCollection = require('../collections/nodes.js')
   , $ = require('jquery')
   , Backbone = require('backbone')
   , CollectivesModel = Backbone.Model.extend({})

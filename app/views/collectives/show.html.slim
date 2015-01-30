@@ -3,18 +3,55 @@
     - @collective.nodes.order(:position).each do |node|
       -unless node.links.empty?
         section.node
-          h3
+          h3.node-title
             =node.title
-          ul.links-list
+          .links-list
             -node.links.order(:position).each do |link|
-              li.link-item
-                = link_to link.title, link.url, target: "_blank", class: "link-title"
+              .link-item data-id=link.id
+                span.title
+                  = link_to link.title, link.url, target: "_blank", class: "link-title"
+                span.url
+                  = link.url
+                span.summary
+                  = link.summary
 
     section.node.default-node
-      h3 未命名
-      ul.links-list
+      h3.node-title 未命名
+      .links-list
         -@collective.links.where(node_id: nil).each do |link|
-          li.link-item
-            = link_to link.title, link.url, target: "_blank", class: "link-title"
+          .link-item data-id=link.id
+            span.title
+              = link_to link.title, link.url, target: "_blank", class: "link-title"
+            span.url
+              = link.url
+            span.summary
+              = link.summary
 
-= javascript_include_tag 'compiled/collectives/show', 'data-turbolinks-track' => true
+script#links_json type="json"
+  == @links_json
+
+script#tmpl-link-item-collapsed type="link-item"
+  span.title
+    a href="{{= url}}" target="_blank" class="link-title"
+      | {{= title}}
+  span.url
+    | {{= url}}
+  span.summary
+    | {{= summary}}
+
+script#tmpl-link-item-expanded type="link-item"
+  .bd
+    .title
+      a href="{{= url}}" target="_blank" class="link-title"
+        | {{= title}}
+      span.url
+        | {{= url}}
+    | {{ if (summary) { }}
+    p.summary
+      | {{= summary}}
+    | {{ } }}
+  .ft
+    a href="{{= url}}" target="_blank" class="link-more"
+      | See more
+
+= javascript_include_tag 'compiled/collectives/show/index', 'data-turbolinks-track' => true
