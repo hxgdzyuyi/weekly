@@ -1,8 +1,12 @@
 .collectives-show-container
   section.collective-header
     .collective-header-inner
-      .avatar
-        =image_tag "http://placeimg.com/96/96/animals", width: 96, height: 96
+      .hd
+        .avatar-wrapper
+          .avatar
+            =image_tag "http://placeimg.com/96/96/animals", width: 64, height: 64
+        .author
+          | 作者：雨忆
       .bd
         h1.title
           = @collective.title

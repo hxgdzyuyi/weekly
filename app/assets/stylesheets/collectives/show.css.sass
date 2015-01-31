@@ -1,4 +1,5 @@
 @import "compass/css3"
+@import "compass/utilities/general/clearfix"
 
 .collectives-show-container
   .collective-content
@@ -13,10 +14,11 @@
       margin: 20px
       overflow: hidden
       padding: 10px 20px
-      .avatar
-        float: left
-        margin-right: 30px
-        margin-top: 5px
+      .hd
+        float: right
+        margin-left: 40px
+        margin-top: 13px
+        text-align: center
       .bd
         overflow: hidden
       h1
@@ -26,13 +28,21 @@
       .desc
         margin-top: 18px
         color: #666
+      .author
+        color: #777
+        font-size: 14px
+        padding-top: 15px
       .avatar
-        width: 96px
-        height: 96px
+        cursor: pointer
+        @include inline-block()
+        width: 64px
+        height: 64px
         overflow: hidden
-        @include border-radius(50%)
-        @include box-shadow(#ddd 2px 2px 10px)
-
+        opacity: .3
+        &:hover
+          opacity: 1
+        @include border-radius(10%)
+        @include box-shadow(#ddd 1px 1px 10px)
   .node
     margin-bottom: 20px
     .node-title
