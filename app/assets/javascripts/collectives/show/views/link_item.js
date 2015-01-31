@@ -9,10 +9,11 @@ module.exports = Backbone.View.extend({
 , className: 'link-item'
 , events: {
     'click': 'clicked'
-  , 'click .expanded a[href]': 'stopPropagation'
-  , 'click .expanded .summary': 'stopPropagation'
+  , 'click a[href]': 'stopPropagation'
+  , 'click .summary': 'stopPropagation'
   }
 , stopPropagation: function(e) {
+    if (!this.isExpanded) { return }
     e.stopPropagation()
   }
 , initialize: function(options) {
@@ -41,9 +42,9 @@ module.exports = Backbone.View.extend({
     return this.render()
   }
 , render: function() {
+    this.$el[this.isExpanded ? 'addClass' : 'removeClass']('expanded')
     this.$el.html(
       this[this.isExpanded ? 'tmplExpanded': 'tmplCollapsed'](this.model.toJSON()))
-    this.$el[this.isExpanded ? 'addClass' : 'removeClass']('expanded')
     return this
   }
 })
