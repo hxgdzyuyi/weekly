@@ -2,7 +2,7 @@ header.topnav
   .container
     .usernav
       -if user_signed_in?
-        = gravatar_for( current_user )
+        = gravatar_for( current_user, 30 )
         ul
           li
             = link_to current_user.email, edit_user_registration_path
