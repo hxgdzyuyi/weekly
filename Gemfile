@@ -17,6 +17,8 @@ gem 'pg'
 
 # 前端相关
 gem 'sass-rails', '~> 5.0.1'
+gem 'susy'
+gem 'breakpoint'
 gem 'compass', '~> 1.0.3'
 gem 'bootstrap-sass'
 gem 'compass-rails', '~> 2.0.4'

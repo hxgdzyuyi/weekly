@@ -1,0 +1,14 @@
+- content_for :layout_extra_class do
+  | sidebar-layout
+
+- content_for :body do
+  .content
+    = yield
+
+  .sidebar
+    - unless content_for?(:sidebar)
+      = render "devise/shared/links"
+    - else
+      = yield :sidebar
+
+= render :file => "layouts/application"

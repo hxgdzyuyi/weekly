@@ -1,0 +1,58 @@
+@mixin clearfix
+  &:after,
+  &:before
+    content: ""
+    display: table
+    clear: both
+
+.field
+  margin-bottom: 15px
+
+.form-group
+  margin-bottom: 15px
+  @include clearfix
+  label
+    max-width: 100%
+    margin-bottom: 5px
+    font-weight: 700
+    @include inline-block
+  textarea.form-control
+    height: auto
+  .form-control
+    width: 100%
+    height: 34px
+    line-height: 1.42
+    padding: 6px 12px
+    font-size: 14px
+    background-color: white
+    border: 1px solid #ccc
+    border-radius: 4px
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075))
+  .form-control[disabled],
+  .form-control[readonly],
+  fieldset[disabled]
+    cursor: not-allowed
+    background-color: #eee
+    opacity: 1
+
+
+.checkbox
+  font-size: 14px
+  vertical-align: middle
+  line-height: 1.42
+  input[type=checkbox]
+    position: absolute
+    margin: 4px 0 0
+    margin-left: -20px
+  label
+    min-height: 20px
+    padding-left: 20px
+    margin-bottom: 0
+    font-weight: 400
+    cursor: pointer
+    @include: inline-block
+
+.field_with_errors
+  .form-control
+    border: 1px solid #b94a48

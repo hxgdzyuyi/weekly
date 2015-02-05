@@ -1,0 +1,15 @@
+h2
+  | 忘记密码
+
+= form_for(resource, as: resource_name, url: password_path(resource_name),
+  html: { method: :post, class: "form-horizontal form-devise" }) do |f|
+
+  = devise_error_messages!
+
+  .form-group
+    = f.label :email
+    = f.email_field :email, autofocus: true, class: "form-control input-email",
+      placeholder: "foo@bar.com"
+  .form-group
+    .actions
+      = f.submit "发送密码修改邮件", class: "button button-primary"

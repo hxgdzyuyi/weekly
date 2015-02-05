@@ -15,13 +15,23 @@
  *= require 'normalize'
  */
 
-@import "compass/css3"
+@import "compass"
+@import "susy"
+@import "breakpoint"
+
+$susy: (container: 69em, columns: 16, gutter: .25, use-custom: (box-sizing: false))
+$phone: max-width 40em
+
+
+@import "ui/*"
 
 *, *:after, *:before
   box-sizing: border-box
 
 body
   background: #ececec
+  color: #333
+  font-size: 14px
 
 a
   text-decoration: none
@@ -35,8 +45,7 @@ ul
   margin-top: 0
 
 section.main
-  width: 69em
-  max-width: 100%
+  @include container
   margin: 0 auto
 
 footer
@@ -78,3 +87,52 @@ footer
       float: left
       margin-top: 13px
   @include box-shadow(0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28))
+
+.sidebar-layout
+  .content
+    @include span(12)
+  .sidebar
+    float: right
+    @include span(last 4)
+    @include breakpoint($phone)
+      margin-top: 1em
+  .content, .sidebar
+    background: white
+    border-radius: 3px
+    padding: 10px
+    @include breakpoint($phone)
+      @include squish(0.5)
+      @include span(15)
+  .content h2
+    font-size: 16px
+    border-bottom: 1px solid #ddd
+    padding-bottom: 10px
+    margin-top: 10px
+  .devise-sidebar-links
+    font-size: 13px
+    ul
+      margin-bottom: 0
+      li:not(:last-child)
+        margin-bottom: 10px
+
+.form-devise
+  .form-group > label
+    height: 34px
+    font-size: 16px
+    line-height: 34px
+    text-align: right
+    @include span(2 of 11)
+  .form-control
+    @include span(4 of 11)
+  .input-email
+    @include span(6 of 11)
+  .actions,
+  .checkbox-wrapper
+    @include push(2 of 11)
+    @include span(4 of 11)
+  .error-explanation
+    ul
+      list-style: inside
+      font-size: 14px
+    h4
+      font-size: 16px

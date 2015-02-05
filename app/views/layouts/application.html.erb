@@ -8,8 +8,8 @@
 </head>
 <body>
   <%= render "widgets/nav" %>
-  <section class="main">
-    <%= yield %>
+  <section class="main <%= yield :layout_extra_class %>">
+    <%= content_for?(:body) ? yield(:body) : yield %>
   </section>
   <footer>
     <div class="footer-inner">
