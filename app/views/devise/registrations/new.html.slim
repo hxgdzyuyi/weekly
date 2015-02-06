@@ -7,8 +7,12 @@ h2
   = devise_error_messages!
 
   .form-group
+    = f.label :name
+    = f.text_field :name, autofocus: true, class: "form-control",
+      placeholder: "张三"
+  .form-group
     = f.label :email
-    = f.email_field :email, autofocus: true, class: "form-control input-email",
+    = f.email_field :email, class: "form-control input-email",
       placeholder: "foo@bar.com"
   .form-group
     = f.label :password

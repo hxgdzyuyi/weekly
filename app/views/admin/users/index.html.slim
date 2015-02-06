@@ -9,6 +9,8 @@
         th
           | 邮箱
         th
+          | 名号
+        th
         th
         th
     tbody
@@ -16,6 +18,8 @@
         tr
           td
             = user.email
+          td
+            = user.name
           td
             = link_to 'Show', admin_user_path(user)
           td

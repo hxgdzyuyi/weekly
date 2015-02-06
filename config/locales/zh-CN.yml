@@ -4,7 +4,7 @@
       user: "用户"
     attributes:
       user:
-        name: "名字"
+        name: "名号"
         email: "邮箱"
         password: "密码"
         password_confirmation: "确认密码"
