@@ -60,8 +60,8 @@
   .link-item
     @include gallery(7 of 14)
     @include breakpoint($phone)
-      overflow: hidden
       @include gallery(15 of 15)
+      margin-right: 0 !important
   .link-item.expanded
     margin-top: 10px
     background: white
@@ -98,7 +98,6 @@
     margin: 0 20px
     font-size: 16px
     border-bottom: 1px solid #eee
-    cursor: pointer
     background: white
     .title, .url, .summary
       margin-right: 15px
