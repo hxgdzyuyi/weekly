@@ -6,7 +6,7 @@
           .avatar
             =image_tag "http://placeimg.com/96/96/animals", width: 64, height: 64
         .author
-          | 作者：雨忆
+          | 作者：#{ @collective.user.name }
       .bd
         h1.title
           = @collective.title
@@ -20,25 +20,13 @@
             =node.title
           .links-list
             -node.links.order(:position).each do |link|
-              .link-item data-id=link.id
-                span.title
-                  = link_to link.title, link.url, target: "_blank", class: "link-title"
-                span.url
-                  = link.url
-                span.summary
-                  = link.summary
+              = render :partial => "link_item",  :locals => {:link => link}
 
     section.node.default-node
       h3.node-title 未命名
       .links-list
         -@collective.links.where(node_id: nil).each do |link|
-          .link-item data-id=link.id
-            span.title
-              = link_to link.title, link.url, target: "_blank", class: "link-title"
-            span.url
-              = link.url
-            span.summary
-              = link.summary
+          = render :partial => "link_item",  :locals => {:link => link}
 
 script#links_json type="json"
   == @links_json
@@ -66,5 +54,3 @@ script#tmpl-link-item-expanded type="link-item"
   .ft
     a href="{{= url}}" target="_blank" class="link-more"
       | See more
-
-= javascript_include_tag 'compiled/collectives/show/index', 'data-turbolinks-track' => true

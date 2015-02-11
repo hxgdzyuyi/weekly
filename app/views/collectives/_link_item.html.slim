@@ -1,0 +1,11 @@
+.link-item.expanded data-id=link.id
+  .bd
+    .title
+      = link_to link.title, link.url, target: "_blank", class: "link-title"
+      span.url
+        = link.url
+    - if link.summary
+      p.summary
+        = link.summary
+  .ft
+    = link_to "See more", link.url, target: "_blank", class: "link-more"

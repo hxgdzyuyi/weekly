@@ -4,6 +4,7 @@ module ApplicationHelper
       raw file.read
     end
   end
+
   def svg_use(svg_id, extra_class="")
     html = <<-HTML
     <span class="svg-icon #{extra_class}">
@@ -20,4 +21,5 @@ module ApplicationHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     image_tag( gravatar_url, alt: user.email, class: "gravatar" )
   end
+
 end
