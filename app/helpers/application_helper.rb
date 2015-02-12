@@ -34,4 +34,10 @@ module ApplicationHelper
     end
   end
 
+  def timeago(time, options = {})
+    options[:class] = options[:class].blank? ? "timeago" : [options[:class],"timeago"].join(" ")
+    options.merge!(title: time.iso8601)
+    content_tag(:abbr, time.strftime("%Y 年 %m 月 %d 日"), class: options[:class], title: time.iso8601) if time
+  end
+
 end
