@@ -3,10 +3,9 @@
     .collective-header-inner
       .hd
         .avatar-wrapper
-          .avatar
-            =image_tag "http://placeimg.com/96/96/animals", width: 64, height: 64
+          = user_avatar_tag(@collective.user, 64)
         .author
-          | 作者：#{ @collective.user.name }
+          | 作者：#{ user_name_tag(@collective.user) }
       .bd
         h1.title
           = @collective.title
