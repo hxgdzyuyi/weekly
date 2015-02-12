@@ -1,6 +1,20 @@
 .collectives-index-container
-  - if user_signed_in?
-    = link_to "新建文摘", new_collective_path, class: 'button button-highlight'
-    = link_to "我的文摘", collectives_user_path(current_user.id), class: 'button button-highlight'
-  - else
-    | 请先登录
+  .container-inner
+    - if user_signed_in?
+      = link_to "新建文摘", new_collective_path, class: 'button button-highlight'
+      = link_to "我的文摘", collectives_user_path(current_user.id), class: 'button button-highlight'
+    - else
+      | 请先登录
+
+    section.collectives
+      ul.collectives-list
+        - @collectives.each do |collective|
+          li.collective-item
+            .hd
+              = user_avatar_tag(collective.user, 64)
+            .bd
+              .title
+                = link_to collective_path(collective) do
+                  = collective.title
+              .summary
+                = collective.summary

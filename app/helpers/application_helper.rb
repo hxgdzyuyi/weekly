@@ -16,10 +16,20 @@ module ApplicationHelper
     html
   end
 
-  def gravatar_for(user, size)
+  def user_name_tag(user, options = {})
+    link_to(user.name, user_path(user), options)
+  end
+
+  def user_avatar_tag(user, size, options = {})
+    link = options[:link] || true
     gravatar_id = Digest::MD5::hexdigest( user.email.downcase )
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag( gravatar_url, alt: user.email, class: "gravatar" )
+    image = image_tag( gravatar_url, size: "#{size}", alt: user.email, class: "gravatar avatar" )
+    if link
+      link_to(raw(image), user_path(user))
+    else
+      raw image
+    end
   end
 
 end
