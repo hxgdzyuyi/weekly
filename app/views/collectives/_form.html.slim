@@ -14,15 +14,15 @@
   .form-group
     .col-sm-10
       = f.label :title
-      = f.text_field :title, class: "form-control"
+      = f.text_field :title, class: "form-control", required: true
 
   .form-group
     .col-sm-10
       = f.label :summary
-      = f.text_area :summary, class: "form-control"
+      = f.text_area :summary, class: "form-control", required: true
 
   .form-group
     .col-sm-10
-      = f.submit :class => "button button-highlight"
+      = f.submit "提交", :class => "button button-highlight"
 
   = f.hidden_field :user_id, :value => current_user.id

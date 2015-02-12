@@ -1,9 +1,10 @@
-.page-header
-  = link_to collectives_user_path(current_user.id), :class => 'btn btn-default' do 
-    span.glyphicon.glyphicon-list-alt
-    |  Back
-  h1
-    | New
-    | collective
 
-= render 'form'
+.collectives-new-container.full-layout.boxed-main
+  .inner-container
+    = link_to collectives_user_path(current_user.id),
+      :class => 'button button-primary button-tiny' do
+      span.glyphicon.glyphicon-list-alt
+      |  返回
+    h1
+      | 第一步：新建文摘
+    = render 'form'
