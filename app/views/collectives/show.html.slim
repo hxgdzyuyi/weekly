@@ -11,21 +11,32 @@
           = @collective.title
         p.desc
           = @collective.summary
-  section.collective-content
-    - @collective.nodes.order(:position).each do |node|
-      -unless node.links.empty?
-        section.node
-          h3.node-title
-            =node.title
-          .links-list
-            -node.links.order(:position).each do |link|
-              = render :partial => "link_item",  :locals => {:link => link}
+  - unless @collective.links.empty?
+    section.collective-content
+      - @collective.nodes.order(:position).each do |node|
+        -unless node.links.empty?
+          section.node
+            h3.node-title
+              =node.title
+            .links-list
+              -node.links.order(:position).each do |link|
+                = render :partial => "link_item",  :locals => {:link => link}
 
-    section.node.default-node
-      h3.node-title 未命名
-      .links-list
-        -@collective.links.where(node_id: nil).each do |link|
-          = render :partial => "link_item",  :locals => {:link => link}
+      section.node.default-node
+        h3.node-title 未命名
+        .links-list
+          -@collective.links.where(node_id: nil).each do |link|
+            = render :partial => "link_item",  :locals => {:link => link}
+  - else
+    section.boxed-main.full-layout
+      .boxed-empty-info
+        | 该文摘暂时还没有链接
+        - if user_signed_in? and current_user == @collective.user
+            | ，
+            =<> link_to "去添加链接", edit_collective_path(@collective)
+            | 。
+        - else
+          | 。
 
 script#links_json type="json"
   == @links_json
