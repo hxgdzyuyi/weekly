@@ -4,7 +4,8 @@ class CollectivesController < ApplicationController
   # GET /collectives
   # GET /collectives.json
   def index
-    @collectives = Collective.all
+    @collectives = Collective.order(:created_at)
+      .page(params[:page]).per(10)
   end
 
   # GET /collectives/1

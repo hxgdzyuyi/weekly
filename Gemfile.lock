@@ -98,9 +98,6 @@ GEM
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kaminari-bootstrap (3.0.1)
-      kaminari (>= 0.13.0)
-      rails
     kgio (2.9.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
@@ -216,7 +213,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
-  kaminari-bootstrap (~> 3.0.1)
   mini_magick
   nokogiri
   pg

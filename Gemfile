@@ -6,7 +6,6 @@ gem 'rvm-capistrano'
 
 gem 'dotenv-rails', :groups => [:development, :test, :production]
 gem 'kaminari'
-gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'nokogiri'
 gem 'acts_as_list'
 
