@@ -21,5 +21,8 @@
                   = collective.title
               .summary
                 = collective.summary
+              .link-count
+                =<> collective.links.count
+                | 篇
     .pagination-wrapper
       = paginate @collectives
