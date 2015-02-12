@@ -2,12 +2,25 @@ header.topnav
   .container
     .usernav
       -if user_signed_in?
-        = user_avatar_tag( current_user, 30 )
-        ul
-          li
-            = link_to current_user.name, edit_user_registration_path
-          li
-            = link_to "注销", destroy_user_session_path, method: "delete"
+        span.dropmenu-wrapper
+          = link_to "#", class: "header-member dropmenu-toggle" do
+            span.member
+              = user_avatar_tag( current_user, 30 , { :link => false })
+            span.member-name
+              = current_user.name
+          .dropmenu-content style="display: none;"
+            .hd
+              = current_user.name
+            .bd
+              ul.dropmenu-list
+                li
+                  = link_to "我的文摘", collectives_user_path(current_user.id)
+                li
+                  = link_to "修改用户资料", edit_user_registration_path
+              hr
+              ul.dropmenu-list
+                li
+                  = link_to "注销", destroy_user_session_path, method: "delete"
       -else
         ul.anon-user-actions
           li

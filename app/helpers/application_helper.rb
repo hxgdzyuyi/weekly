@@ -23,7 +23,7 @@ module ApplicationHelper
   def user_avatar_tag(user, size, options = {})
     return nil if user.nil?
 
-    link = options[:link] || true
+    link = true if options[:link].nil?
     gravatar_id = Digest::MD5::hexdigest( user.email.downcase )
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     image = image_tag( gravatar_url, size: "#{size}", alt: user.email, class: "gravatar avatar" )
