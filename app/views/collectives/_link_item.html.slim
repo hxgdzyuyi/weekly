@@ -1,9 +1,10 @@
-.link-item.expanded data-id=link.id
+.link-item.expanded class=("without-summary" if link.summary.empty?) data-id=link.id
   .bd
     .title
       = link_to link.title, link.url, target: "_blank", class: "link-title"
-    - if link.summary
+    - unless link.summary.empty?
       p.summary
         = link.summary
-  .ft
-    = link_to "查看更多", link.url, target: "_blank", class: "link-more"
+  - unless link.summary.empty?
+    .ft
+      = link_to "查看更多", link.url, target: "_blank", class: "link-more"

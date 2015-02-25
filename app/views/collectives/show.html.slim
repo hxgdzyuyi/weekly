@@ -24,13 +24,13 @@
           section.node
             h3.node-title
               =node.title
-            .links-list
+            .links-list.without-masonry
               -node.links.order(:position).each do |link|
                 = render :partial => "link_item",  :locals => {:link => link}
 
       section.node.default-node
         h3.node-title 未命名
-        .links-list
+        .links-list.without-masonry
           -@collective.links.where(node_id: nil).each do |link|
             = render :partial => "link_item",  :locals => {:link => link}
   - else
@@ -70,3 +70,5 @@ script#tmpl-link-item-expanded type="link-item"
   .ft
     a href="{{= url}}" target="_blank" class="link-more"
       | See more
+
+= javascript_include_tag 'compiled/collectives/show/index', 'data-turbolinks-track' => true
