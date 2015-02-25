@@ -11,6 +11,12 @@
           = @collective.title
         p.desc
           = @collective.summary
+
+  section.boxed-main.full-layout.collective-actions
+    - if current_user_is_author(@collective)
+      = link_to '编辑', edit_collective_path(@collective),
+        class: "button button-tiny"
+
   - unless @collective.links.empty?
     section.collective-content
       - @collective.nodes.order(:position).each do |node|
