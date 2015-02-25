@@ -167,10 +167,11 @@ footer
     @include span(last 4)
     @include breakpoint($phone)
       margin-top: 1em
-  .content, .sidebar
+  .content, .sidebar, .content
     background: white
     border-radius: 3px
     padding: 10px
+  .content, .sidebar, .layout-content, .layout-sidebar
     @include breakpoint($phone)
       @include squish(0.5)
       @include span(15)
