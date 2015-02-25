@@ -29,7 +29,7 @@
                 = render :partial => "link_item",  :locals => {:link => link}
 
       section.node.default-node
-        h3.node-title 未命名
+        h3.node-title
         .links-list.without-masonry
           -@collective.links.where(node_id: nil).each do |link|
             = render :partial => "link_item",  :locals => {:link => link}

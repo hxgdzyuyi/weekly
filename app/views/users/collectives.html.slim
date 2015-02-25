@@ -12,8 +12,8 @@
             .actions
               - if user_signed_in?
                 = link_to '编辑', edit_collective_path(collective), class: "button button-tiny"
-                = link_to '查看', collective, class: "button button-tiny"
                 = link_to '删除', collective, class: "button button-tiny",
                   method: :delete, data: { confirm: 'Are you sure?' }
-            span.bd = collective.title
+            = link_to collective_path(collective), class: "lnk-collective" do
+              = collective.title
 
