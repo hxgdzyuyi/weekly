@@ -127,10 +127,16 @@ footer
     @include span(15)
     @include squish(0.5)
 
+.boxed-actions,
 .boxed-main
-  &:nth-child(n+1)
-    margin-top: 20px
   background-color: white
+  &:nth-child(n+2)
+    margin-top: 20px
+
+.boxed-actions
+  padding: 10px
+
+.boxed-main
   border-radius: 4px
   .boxed-empty-info
     padding: 30px 20px
