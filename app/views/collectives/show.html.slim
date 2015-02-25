@@ -12,8 +12,8 @@
         p.desc
           = @collective.summary
 
-  section.boxed-main.full-layout.collective-actions
-    - if current_user_is_author(@collective)
+  - if current_user_is_author(@collective)
+    section.boxed-main.full-layout.collective-actions
       = link_to '编辑', edit_collective_path(@collective),
         class: "button button-tiny"
 
