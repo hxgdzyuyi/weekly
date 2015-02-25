@@ -15,7 +15,7 @@
                 = link_to collective_path(collective) do
                   = collective.title
         .ft
-          = link_to "更多", collectives_user_path(current_user.id),
+          = link_to "更多", collectives_user_path(collective.user.id),
             class: "link-more"
       - else
         .boxed-empty-info
