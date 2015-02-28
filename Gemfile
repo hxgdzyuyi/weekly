@@ -14,6 +14,10 @@ gem 'rails', '4.1.8'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# fake-data related
+gem 'faker'
+gem 'factory_girl_rails', :groups => [:test ]
+
 # 前端相关
 gem 'sass-rails', '~> 5.0.1'
 gem 'susy'
