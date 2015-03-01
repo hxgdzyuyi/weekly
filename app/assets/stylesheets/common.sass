@@ -40,6 +40,7 @@ footer
     max-width: 1200px
     width: 100%
     margin: 0 auto
+    padding: 0 10px
   .logo-wrapper
     float: left
     height: 56px
@@ -126,10 +127,18 @@ footer
     @include span(15)
     @include squish(0.5)
 
+.boxed-actions,
 .boxed-main
-  &:nth-child(n+1)
-    margin-top: 20px
   background-color: white
+  &:nth-child(n+2)
+    margin-top: 20px
+
+.boxed-actions
+  padding: 10px
+  .button
+    margin-right: 10px
+
+.boxed-main
   border-radius: 4px
   .boxed-empty-info
     padding: 30px 20px
@@ -139,7 +148,8 @@ footer
   .boxed-header
     background-color: #f5f5f5
     padding: 10px
-    border-radius-top: 4px
+    border-radius-top-right: 4px
+    border-radius-top-left: 4px
     color: #999
     h3
       margin: 0
@@ -148,17 +158,20 @@ footer
       text-align: center
 
 .sidebar-layout
-  .content
+  .content,
+  .layout-content
     @include span(12)
-  .sidebar
+  .sidebar,
+  .layout-sidebar
     float: right
     @include span(last 4)
     @include breakpoint($phone)
       margin-top: 1em
-  .content, .sidebar
+  .content, .sidebar, .content
     background: white
     border-radius: 3px
     padding: 10px
+  .content, .sidebar, .layout-content, .layout-sidebar
     @include breakpoint($phone)
       @include squish(0.5)
       @include span(15)

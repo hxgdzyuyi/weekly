@@ -1,0 +1,27 @@
+- content_for :layout_extra_class do
+  | sidebar-layout
+
+.users-show-container
+  .layout-content
+    section.boxed-main
+      - unless @collectives.empty?
+        .boxed-header
+          h3
+            | 最新文摘
+        ul.bd.collectives-list
+          - @collectives.each do |collective|
+            li.collective-item
+              .title
+                = link_to collective_path(collective) do
+                  = collective.title
+        .ft
+          = link_to "更多", collectives_user_path(@user.id),
+            class: "link-more"
+      - else
+        .boxed-empty-info
+          p 目前还没有文摘。
+  .sidebar
+    .avatar-wrapper
+      = user_avatar_tag(@user, 80)
+    .author-name
+      | 作者：#{ user_name_tag(@user) }

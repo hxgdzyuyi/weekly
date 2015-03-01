@@ -11,6 +11,12 @@
           = @collective.title
         p.desc
           = @collective.summary
+
+  - if current_user_is_author(@collective)
+    section.boxed-main.full-layout.collective-actions
+      = link_to '编辑', edit_collective_path(@collective),
+        class: "button button-tiny"
+
   - unless @collective.links.empty?
     section.collective-content
       - @collective.nodes.order(:position).each do |node|
@@ -18,13 +24,13 @@
           section.node
             h3.node-title
               =node.title
-            .links-list
+            .links-list.without-masonry
               -node.links.order(:position).each do |link|
                 = render :partial => "link_item",  :locals => {:link => link}
 
       section.node.default-node
-        h3.node-title 未命名
-        .links-list
+        h3.node-title
+        .links-list.without-masonry
           -@collective.links.where(node_id: nil).each do |link|
             = render :partial => "link_item",  :locals => {:link => link}
   - else
@@ -64,3 +70,5 @@ script#tmpl-link-item-expanded type="link-item"
   .ft
     a href="{{= url}}" target="_blank" class="link-more"
       | See more
+
+= javascript_include_tag 'compiled/collectives/show/index', 'data-turbolinks-track' => true

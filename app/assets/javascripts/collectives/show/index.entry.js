@@ -1,20 +1,18 @@
-var _ = require('underscore')
-_.templateSettings = {
-    evaluate    : /\{\{([\s\S]+?)\}\}/g
-  , interpolate : /\{\{=([\s\S]+?)\}\}/g
-  , escape      : /\{\{-([\s\S]+?)\}\}/g
-}
-
 var $ = require('jquery')
-  , LinksCollection = require('../collections/links.js')
-  , Backbone = require('backbone')
-  , CollectivesModel = Backbone.Model.extend({})
-  , CollectivesPanel = require('./views/collectives_panel')
+  , Masonry = require('masonry')
 
 $(function() {
-  var scope = new CollectivesModel({})
-    , resp = JSON.parse($('#links_json[type="json"]').html())
 
-  scope.set('links', new LinksCollection(resp, { scope: scope }))
-  var collectivesPanel = new CollectivesPanel({ scope: scope })
+  $('.links-list').each(function(index, element) {
+    var linksList = $(element)
+    linksList.removeClass('without-masonry')
+      .addClass('with-masonry')
+
+    var gutterSizer = $('<div>', { class: 'gutter-sizer'})
+    linksList.append(gutterSizer)
+    var msnry = new Masonry( element, {
+      itemSelector: '.link-item'
+    , gutter: '.gutter-sizer'
+    })
+  })
 })

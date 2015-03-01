@@ -1,10 +1,11 @@
 .collectives-index-container
   .container-inner.full-layout
-    - if user_signed_in?
-      = link_to "新建文摘", new_collective_path, class: 'button button-highlight'
-      = link_to "我的文摘", collectives_user_path(current_user.id), class: 'button button-highlight'
-    - else
-      | 请先登录
+    section.boxed-actions
+      - if user_signed_in?
+        = link_to "新建文摘", new_collective_path, class: 'button button-small button-action'
+        = link_to "我的文摘", collectives_user_path(current_user.id), class: 'button button-small button-action'
+      - else
+        | 请先登录
 
     section.collectives.boxed-main
       .boxed-header
