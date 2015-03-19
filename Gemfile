@@ -2,7 +2,7 @@ source 'https://ruby.taobao.org/'
 
 gem 'capistrano'
 gem 'unicorn'
-gem 'rvm-capistrano'
+gem 'rvm-capistrano', require: false
 
 gem 'dotenv-rails', :groups => [:development, :test, :production]
 gem 'kaminari'
