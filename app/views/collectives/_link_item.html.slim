@@ -1,7 +1,8 @@
 .link-item.expanded class=("without-summary" if link.summary.empty?) data-id=link.id
   .bd
     .title
-      = link_to link.title, link.url, target: "_blank", class: "link-title"
+      = link_to truncate(link.title, length: 60), link.url, \
+        target: "_blank", class: "link-title", title: link.title
     - unless link.summary.empty?
       p.summary
         = link.summary
